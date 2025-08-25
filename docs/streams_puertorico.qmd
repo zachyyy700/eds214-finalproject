@@ -5,3 +5,21 @@ format: html
 editor: visual
 ---
 
+```{r}
+pacman::p_load("tidyverse")
+# read in data
+bq1_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv"))
+bq2_df <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv"))
+bq3_df <- read_csv(here::here("data", "QuebradaCuenca3-Bisley.csv"))
+prm_df <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
+
+skimr::skim(prm_df)
+```
+MUST transform input data before ggplotting
+How to handle the uneven distribution of raw data across dates?
+- Look into sapply()
+
+```{r}
+
+```
+
