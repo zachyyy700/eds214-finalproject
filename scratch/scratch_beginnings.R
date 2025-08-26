@@ -5,7 +5,7 @@ pacman::p_load("tidyverse",
                "lubridate",
                "zoo")
 # read in data
-bq1_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
+swapped_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
   janitor::clean_names()
 bq2_df <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv")) |> 
   janitor::clean_names()
