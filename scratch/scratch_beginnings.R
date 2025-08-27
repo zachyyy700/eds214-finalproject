@@ -14,7 +14,8 @@ pacman::p_load("tidyverse",
                "lubridate",
                "zoo",
                "patchwork",
-               "slider")
+               "slider",
+               "ggthemes")
 # read in data
 changed_local_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
   janitor::clean_names()
@@ -223,8 +224,12 @@ binded_slide <- binded_slide |>
 # i think slider method is better, let's try the whole df now
 # can definitely think of a for loop for this
 # sample_date must be in ascending order according to slider documentation
+# trying bind_rows()
+
+binded <- bind_rows(changed_local_df, bq2_df, bq3_df, prm_df)
+
 test_all <- binded |> 
-  filter(sample_date <= "1994-01-01") |> 
+  filter(sample_date <= "1994-01-01" & sample_date >= "1988-01-01") |> 
   select(sample_date, sample_id, k, no3_n, mg, ca, nh4_n) 
 
 # k to roll_k etc.
@@ -232,9 +237,13 @@ test_all_q1 <- test_all |>
   filter(sample_id == "Q1") |> 
   mutate(
     roll_k = slide_index_dbl(.x = k, .i = sample_date, .f = ~mean(.x, na.rm = TRUE), .before = weeks(4), .after = weeks(4), .complete = FALSE),
+    
     roll_no3_n = slide_index_dbl(.x = no3_n, .i = sample_date, .f = ~mean(.x, na.rm = TRUE), .before = weeks(4), .after = weeks(4), .complete = FALSE),
+    
     roll_mg = slide_index_dbl(.x = mg, .i = sample_date, .f = ~mean(.x, na.rm = TRUE), .before = weeks(4), .after = weeks(4), .complete = FALSE),
+    
     roll_ca = slide_index_dbl(.x = ca, .i = sample_date, .f = ~mean(.x, na.rm = TRUE), .before = weeks(4), .after = weeks(4), .complete = FALSE),
+    
     roll_nh4_n = slide_index_dbl(.x = nh4_n, .i = sample_date, .f = ~mean(.x, na.rm = TRUE), .before = weeks(4), .after = weeks(4), .complete = FALSE)
   )
 
@@ -275,18 +284,21 @@ p1 <- ggplot(all_means_and_streams, aes(sample_date)) +
   geom_line(aes(y = roll_k, color = sample_id)) +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        axis.ticks.x = element_blank())
+        axis.ticks.x = element_blank(),
+        legend.position = "none")
 p1
 
 p2 <- ggplot(all_means_and_streams, aes(sample_date)) +
   geom_line(aes(y = roll_no3_n, color = sample_id)) +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        axis.ticks.x = element_blank())
+        axis.ticks.x = element_blank(),
+        legend.position = "none")
 p2
 
 p3 <- ggplot(all_means_and_streams, aes(sample_date)) +
   geom_line(aes(y = roll_mg, color = sample_id)) +
+  labs(color = "Stream ID") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank())
@@ -296,16 +308,90 @@ p4 <- ggplot(all_means_and_streams, aes(sample_date)) +
   geom_line(aes(y = roll_ca, color = sample_id)) +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        axis.ticks.x = element_blank())
+        axis.ticks.x = element_blank(),
+        legend.position = "none")
 p4
 
 p5 <- ggplot(all_means_and_streams, aes(sample_date)) +
-  geom_line(aes(y = roll_nh4_n, color = sample_id)) 
+  geom_line(aes(y = roll_nh4_n, color = sample_id)) +
+  theme(legend.position = "none")
 p5
 
-p_all <- p1 / p2 / p3 / p4 / p5
-p_all
-# attempt using across() for repeating slide_index_dbl() calls
-#new_names <- c("roll_k", "roll_no3_n", "roll_mg", "roll_ca", "roll_nh4_n")
-# test_all_q1 |> 
-#   mutate(across(k:nh4_n), slide_index_dbl(.i = sample_date, .f = mean, .before = weeks(4), .after = weeks(4), .complete = FALSE), .names = "roll_{.col}")
+p_all <- (p1 / p2 / p3 / p4 / p5)
+p_all 
+
+# Problem Solving. Max's Way
+# 1. Create tiny example
+# 2. Solve by hand
+# 3. Put solution into function
+# 4 Apply function to whole data
+# maybe just try to apply to nh4 plot?
+moving_average <- function(focal_date, dates, conc, window_size_wks) {
+  # Steps for calculating moving avg over single focal date
+  # 1. Which dates are in the window?
+  is_in_window <- (dates > focal_date - (window_size_wks / 2) * 7) & 
+    (dates < focal_date + (window_size_wks / 2) * 7)
+  # 2. Find associated concentrations
+  window_conc <- conc[is_in_window]
+  # 3. Calculate mean
+  result <- mean(window_conc, na.rm = TRUE) #need na.rm?
+  
+  return(result)
+}
+
+tiny_nh4_n_df <- test_all |> 
+  select(sample_date, sample_id, nh4_n) |> 
+  slice_head(n = 16)
+
+# first call for one focal date
+moving_average(focal_date = tiny_nh4_n_df$sample_date[2],
+               dates = tiny_nh4_n_df$sample_date,
+               conc = tiny_nh4_n_df$nh4_n,
+               window_size_wks = 9)
+# getting nh4 means col using sapply()
+tiny_nh4_n_df$calc_rolling <- sapply(
+  tiny_nh4_n_df$sample_date,
+  moving_average,
+  dates = tiny_nh4_n_df$sample_date,
+  conc = tiny_nh4_n_df$nh4_n,
+  window_size_wks = 9
+)
+
+# apply to nh4 to each test_all, ig ill just add same col
+test_all_q1$nh4_n_rolling <- sapply(
+  test_all_q1$sample_date,
+  moving_average,
+  dates = test_all_q1$sample_date,
+  conc = test_all_q1$nh4_n,
+  window_size_wks = 9
+)
+
+test_all_q2$nh4_n_rolling <- sapply(
+  test_all_q2$sample_date,
+  moving_average,
+  dates = test_all_q2$sample_date,
+  conc = test_all_q2$nh4_n,
+  window_size_wks = 9
+)
+
+test_all_q3$nh4_n_rolling <- sapply(
+  test_all_q3$sample_date,
+  moving_average,
+  dates = test_all_q3$sample_date,
+  conc = test_all_q3$nh4_n,
+  window_size_wks = 9
+)
+
+test_all_prm$nh4_n_rolling <- sapply(
+  test_all_prm$sample_date,
+  moving_average,
+  dates = test_all_prm$sample_date,
+  conc = test_all_prm$nh4_n,
+  window_size_wks = 9
+)
+
+nh4_all_binded <- bind_rows(test_all_q1, test_all_q2, test_all_q3, test_all_prm)
+ggplot(nh4_all_binded, aes(x = sample_date)) + 
+  geom_line(aes(y = nh4_n_rolling, color = sample_id))
+# same result. with nh4 plot. could scrap & use slider or use the function and apply to other groups
+# for final product: consider adjusting y scale limits & color palette
