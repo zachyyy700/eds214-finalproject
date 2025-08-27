@@ -326,18 +326,14 @@ p_all
 # 3. Put solution into function
 # 4 Apply function to whole data
 # maybe just try to apply to nh4 plot?
-moving_average <- function(focal_date, dates, conc, window_size_wks) {
-  # Steps for calculating moving avg over single focal date
-  # 1. Which dates are in the window?
-  is_in_window <- (dates > focal_date - (window_size_wks / 2) * 7) & 
-    (dates < focal_date + (window_size_wks / 2) * 7)
-  # 2. Find associated concentrations
-  window_conc <- conc[is_in_window]
-  # 3. Calculate mean
-  result <- mean(window_conc, na.rm = TRUE) #need na.rm?
-  
-  return(result)
-}
+
+# REPLACING
+source(here::here("R", "mov_avg_2.R"))
+moving_average(focal_date = tiny_nh4_n_df$sample_date[3],
+               dates = tiny_nh4_n_df$sample_date,
+               conc = tiny_nh4_n_df$nh4_n,
+               window_size_wks = 9)
+
 
 tiny_nh4_n_df <- test_all |> 
   select(sample_date, sample_id, nh4_n) |> 
