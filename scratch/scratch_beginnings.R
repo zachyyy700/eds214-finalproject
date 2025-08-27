@@ -17,7 +17,7 @@ pacman::p_load("tidyverse",
                "slider",
                "ggthemes")
 # read in data
-swapped_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
+bq1_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
   janitor::clean_names()
 bq2_df <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv")) |> 
   janitor::clean_names()
@@ -226,7 +226,7 @@ binded_slide <- binded_slide |>
 # sample_date must be in ascending order according to slider documentation
 # trying bind_rows()
 
-binded <- bind_rows(changed_local_df, bq2_df, bq3_df, prm_df)
+binded <- bind_rows(bq1_df, bq2_df, bq3_df, prm_df)
 
 test_all <- binded |> 
   filter(sample_date <= "1994-01-01" & sample_date >= "1988-01-01") |> 
