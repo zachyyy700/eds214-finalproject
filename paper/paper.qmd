@@ -5,16 +5,100 @@ format: html
 
 # Background
 
-*Code for data importing & cleaning*
+This paper serves as documentation for the final project of *EDS 214: Analytical Workflows and Scientific Reproducibility*. The goal is to create a reproducible, analytical workflow and remake Figure 3 of Schaefer et al. (2000). Figure 3 displays five stream nutrients over time from 1988-1994, showing the long-term effects of Hurricane Hugo (1989) on Puerto Rican streams. In the methods section, it was also mentioned that a 9-week moving average was used when creating each time-series.
+
+> Schaefer, Douglas. A., McDowell, W. H., Scatena, F. N., & Asbury, C. E. (2000). Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. Journal of Tropical Ecology, 16(2), 189–207. <https://doi.org/10.1017/s0266467400001358>
+
+## Figure 3:
+
+![](../Figure-3.png)
 
 # Data
 
-*Code for data?*
+Date was retrieved from the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064), the datasets utilized are as follows:
+
+1.  Quebrada one-Bisley (Q1) Chemistry Data
+2.  Quebrada two-Bisley (Q2) Chemistry Data
+3.  Quebrada three-Bisley (Q3) Chemistry Data
+4.  Puente Roto Mameyes (MPR) Chemistry Data
+
+## Data Importing & Combining
+
+Details on importing, combining, and cleaning data can be found in `R/dataimport_cleaning.R`
+
+```{r}
+#| warning: false
+#| message: false
+# read cleaned data
+library(tidyverse)
+streams_long <- read_csv(here::here("data/streams_clean.csv"))
+```
 
 # Methods
 
-*Function creation, ggplotting*
+Two functions were created to 1. calculate the moving average of irregular observation windows (see `R/moving_avg_function.R`) and 2. apply the moving average function over a range of `streams_all` columns and create new rolling average columns for each stream measurement (see `R/zapply.R` for function creation and `R/dataimport_cleaning.R` for application use.
 
 # Results
 
-*Final plot*
+```{r}
+#| echo: false
+library(patchwork)
+
+p1 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
+  geom_line(aes(y = k_rolling)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(y = "K") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
+
+p2 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
+  geom_line(aes(y = no3_n_rolling)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(y = "NO3") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none")
+
+p3 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
+  geom_line(aes(y = mg_rolling)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(y = "Mg") +
+  labs(color = "Stream ID") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+p4 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
+  geom_line(aes(y = ca_rolling)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(y = "Ca") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none")
+
+p5 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
+  geom_line(aes(y = nh4_n_rolling)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(y = "NH4",
+       x = "Sample Date") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| warning: false
+plots <- (p1 / p2 / p3 / p4 / p5)
+plots + plot_annotation(
+  title = "Chemistry of streams from the Luquillo Mountains",
+  subtitle = "Post Hurricane Hugo (1989)",
+  caption = "Data retrived from: McDowell, W. and International Institute of Tropical Forestry(IITF), USDA Forest Service.. 2024."
+)
+```
