@@ -8,11 +8,14 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 
 ## Contents:
 
--   data: Data used in this project. Retrieved from the [Environmental Data Initiative.](doi:10.1017/S0266467400001358)
--   docs: Quarto document that includes code to reproduce figures.
--   R: Contains R scripts used for importing and cleaning data.
--   scratch: Initial R scripts, used as spaghetti.
+-   [R](https://github.com/zachyyy700/eds214-finalproject/tree/main/R): Contains R scripts used for importing/cleaning data and functions.
+-   [data](https://github.com/zachyyy700/eds214-finalproject/tree/main/data): Data used in this project. Retrieved from the [Environmental Data Initiative.](doi:10.1017/S0266467400001358)
+-   [docs](https://github.com/zachyyy700/eds214-finalproject/tree/main/docs): Holds important files for Github Page
+-   [paper](https://github.com/zachyyy700/eds214-finalproject/tree/main/paper): Quarto document including code to reproduce figures.
+-   [scratch](https://github.com/zachyyy700/eds214-finalproject/tree/main/scratch): Initial R scripts, used as spaghetti.
 
-## Figure 3:
+<p float="left">
 
-![](/docs/Figure3.png)
+<img src="/docs/Figure3.png" height="250"/> <img src="/docs/paper_files/figure-html/unnamed-chunk-3-1.png" height="250"/>
+
+</p>
