@@ -127,17 +127,6 @@ ggplot(all_streams_k, aes(sample_date)) +
 
 #bq1 & bq2 section
 # use ends_with()!
-all_streams <- full_join(swapped_df, bq2_df, by = "sample_date") |> 
-  rename(k_bq1 = "k.x", no3_n_bq1 = "no3_n.x", mg_bq1 = "mg.x", ca_bq1 = "ca.x", nh4_n_bq1 = "nh4_n.x",
-         k_bq2 = "k.y", no3_nbq2 = "no3_n.y", mg_bq2 = "mg.y", ca_bq2 = "ca.y", nh4_n_bq2 = "nh4_n.y") 
-  
-# join in bq3
-all_streams <- full_join(all_streams, bq3_df, by = "sample_date")
-
-all_streams <- rename(all_streams, no3_n_bq3 = "no3_n", mg_bq3 = "mg", ca_bq3 = "ca", na4_n_bq3 = "nh4_n") 
-
-all_streams <- all_streams |> 
-  select(sample_date, ends_with(c("bq1", "bq2", "bq3")))
 
 # naming is a pain,
 # trying bind_rows()
@@ -395,3 +384,19 @@ ggplot(nh4_all_binded, aes(x = sample_date)) +
   geom_line(aes(y = nh4_n_rolling, color = sample_id))
 # same result. with nh4 plot. could scrap & use slider or use the function and apply to other groups
 # for final product: consider adjusting y scale limits & color palette
+
+# final product below
+streams_all <- bind_rows(bq1_df, bq2_df, bq3_df, prm_df) |> 
+  janitor::clean_names() |> 
+  filter(sample_date <= "1994-01-01" & sample_date >= "1988-01-01") |> 
+  select(sample_date, sample_id, k, no3_n, mg, ca, nh4_n) 
+
+# lets try across() instead of writing a loop
+streams_all <- streams_all |> 
+  mutate(across( # mutate across cols k:nh4_n, our parameters
+    .cols = "k":"nh4_n",
+    .fns = ~ sapply(sample_date, moving_average, dates = sample_date, conc = ., window_size_wks = 9), # use sapply to run function "moving_average" over k:nh4 cols
+    .names = "{.col}_rolling"
+  ))
+
+
