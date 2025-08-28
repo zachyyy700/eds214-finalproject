@@ -1,0 +1,20 @@
+---
+title: "paper"
+format: html
+---
+
+# Background
+
+*Code for data importing & cleaning*
+
+# Data
+
+*Code for data?*
+
+# Methods
+
+*Function creation, ggplotting*
+
+# Results
+
+*Final plot*
