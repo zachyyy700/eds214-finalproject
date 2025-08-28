@@ -14,4 +14,5 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 -   scratch: Initial R scripts, used as spaghetti.
 
 ## Figure 3:
-![](Figure3.png)
+
+![](/docs/Figure3.png)

@@ -11,7 +11,7 @@ This paper serves as documentation for the final project of *EDS 214: Analytical
 
 ## Figure 3:
 
-![](../Figure-3.png)
+![](/docs/Figure3.png)
 
 # Data
 
