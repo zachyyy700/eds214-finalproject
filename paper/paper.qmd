@@ -1,6 +1,8 @@
 ---
 title: "EDS 214 - Final Project"
-format: html
+format:
+  html:
+    output-file: "index.html"
 ---
 
 # Background
@@ -11,7 +13,7 @@ This paper serves as documentation for the final project of *EDS 214: Analytical
 
 ## Figure 3:
 
-![](/docs/Figure3.png)
+![](../docs/Figure3.png)
 
 # Data
 
