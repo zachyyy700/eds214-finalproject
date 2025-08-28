@@ -14,6 +14,8 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 -   [paper](https://github.com/zachyyy700/eds214-finalproject/tree/main/paper): Quarto document including code to reproduce figures.
 -   [scratch](https://github.com/zachyyy700/eds214-finalproject/tree/main/scratch): Initial R scripts, used as spaghetti.
 
+### Figure 3 (Left) & Recreated Final Product (right)
+
 <p float="left">
 
 <img src="/docs/Figure3.png" height="250"/> <img src="/docs/paper_files/figure-html/unnamed-chunk-3-1.png" height="250"/>
