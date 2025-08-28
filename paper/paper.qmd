@@ -13,7 +13,7 @@ This paper serves as documentation for the final project of *EDS 214: Analytical
 
 ## Figure 3:
 
-![](../docs/Figure3.png)
+![](https://zachyyy700.github.io/eds214-finalproject/docs/Figure3.png)
 
 # Data
 

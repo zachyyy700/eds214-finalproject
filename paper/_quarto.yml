@@ -1,4 +1,2 @@
 project: 
   output-dir: ../docs
-  resources: 
-  - Figure-3.png
