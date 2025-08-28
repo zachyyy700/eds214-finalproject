@@ -1,5 +1,5 @@
 ---
-title: "paper"
+title: "EDS 214 - Final Project"
 format: html
 ---
 
