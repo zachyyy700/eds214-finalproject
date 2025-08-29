@@ -47,7 +47,6 @@ The end product being `streams_long` a combined dataframe with all streams and t
 ```{r}
 #| echo: false
 library(patchwork)
-library(ggthemes)
 
 p1 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = k_rolling)) +
