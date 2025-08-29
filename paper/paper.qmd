@@ -26,21 +26,21 @@ Date was retrieved from the [EDI Data Portal](https://portal.edirepository.org/n
 
 ## Data Importing & Combining
 
-Details on importing, combining, and cleaning data can be found in [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R)
+Details on importing, combining, and cleaning data can be found in [`1_dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/1_data_import_cleaning.R)
 
-##### **Install necessary packages to replicate this Quarto doc by seeing [`R/environ_init.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/environ_init.R)**
+##### **Install necessary packages to replicate this Quarto doc by seeing [`0_environ_init.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/0_environ_init.R)**
 
 ```{r}
 #| warning: false
 #| message: false
 # read cleaned data
 library(tidyverse)
-streams_long <- read_csv(here::here("data/streams_clean.csv"))
+streams_long <- read_csv(here::here("outputs/streams_clean.csv"))
 ```
 
 # Methods
 
-Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see [`R/moving_avg_function.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R)) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see [`R/zapply.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R) for function creation and [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R) for application use.
+Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see [`R/moving_avg_function.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R)) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see [`R/zapply.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R) for function creation and [`1_data_import_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R) for application use.
 
 The end product being `streams_long`, a combined dataframe with all streams and their respective moving average measurements.
 
