@@ -28,6 +28,8 @@ Date was retrieved from the [EDI Data Portal](https://portal.edirepository.org/n
 
 Details on importing, combining, and cleaning data can be found in [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R)
 
+##### **Install necessary packages to replicate this Quarto doc by seeing [`R/environ_init.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/environ_init.R)**
+
 ```{r}
 #| warning: false
 #| message: false

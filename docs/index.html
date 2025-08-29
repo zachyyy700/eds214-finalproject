@@ -119,11 +119,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-importing-combining" class="level2">
 <h2 class="anchored" data-anchor-id="data-importing-combining">Data Importing &amp; Combining</h2>
 <p>Details on importing, combining, and cleaning data can be found in <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a></p>
+<section id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-renviron_init.r" class="level5">
+<h5 class="anchored" data-anchor-id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-renviron_init.r"><strong>Install necessary packages to replicate this Quarto doc by seeing <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/environ_init.R"><code>R/environ_init.R</code></a></strong></h5>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read cleaned data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>streams_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/streams_clean.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 </section>
 <section id="methods" class="level1">
