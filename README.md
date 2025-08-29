@@ -22,6 +22,6 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 
 <p float="left">
 
-<img src="/docs/Figure3.png" width="200" height="300"/> <img src="/docs/paper_files/figure-html/unnamed-chunk-3-1.png" width="300" height="250"/>
+<img src="/docs/Figure3.png" width="250" height="350"/> <img src="/docs/paper_files/figure-html/unnamed-chunk-3-1.png" width="300" height="350"/>
 
 </p>
