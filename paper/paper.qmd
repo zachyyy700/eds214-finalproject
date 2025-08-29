@@ -26,7 +26,7 @@ Date was retrieved from the [EDI Data Portal](https://portal.edirepository.org/n
 
 ## Data Importing & Combining
 
-Details on importing, combining, and cleaning data can be found in `R/dataimport_cleaning.R`
+Details on importing, combining, and cleaning data can be found in [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R)
 
 ```{r}
 #| warning: false
@@ -38,19 +38,24 @@ streams_long <- read_csv(here::here("data/streams_clean.csv"))
 
 # Methods
 
-Two functions were created to 1. calculate the moving average of irregular observation windows (see `R/moving_avg_function.R`) and 2. apply the moving average function over a range of `streams_all` columns and create new rolling average columns for each stream measurement (see `R/zapply.R` for function creation and `R/dataimport_cleaning.R` for application use.
+Two functions were created to 1. calculate the moving average of irregular observation windows (see [`R/moving_avg_function.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R)) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see [`R/zapply.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R) for function creation and [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R) for application use.
+
+The end product being `streams_long` a combined dataframe with all streams and their respective, moving average measurements.
 
 # Results
 
 ```{r}
 #| echo: false
 library(patchwork)
+library(ggthemes)
 
 p1 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = k_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "K") +
-  theme_minimal() +
+  labs(y = "K (mg/l)") +
+  theme_classic() +
+  geom_vline(xintercept = as.Date("1989-09-10"),
+             linetype = "dotdash") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
@@ -59,8 +64,10 @@ p1 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
 p2 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = no3_n_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "NO3") +
-  theme_minimal() +
+  labs(y = "NO3 (ug/l)") +
+  theme_classic() +
+  geom_vline(xintercept = as.Date("1989-09-10"),
+             linetype = "dotdash") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
@@ -69,9 +76,11 @@ p2 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
 p3 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = mg_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "Mg") +
+  labs(y = "Mg (mg/l)") +
   labs(color = "Stream ID") +
-  theme_minimal() +
+  theme_classic() +
+  geom_vline(xintercept = as.Date("1989-09-10"),
+             linetype = "dotdash") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank())
@@ -79,8 +88,10 @@ p3 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
 p4 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = ca_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "Ca") +
-  theme_minimal() +
+  labs(y = "Ca (mg/l)") +
+  theme_classic() +
+  geom_vline(xintercept = as.Date("1989-09-10"),
+             linetype = "dotdash") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
@@ -89,13 +100,15 @@ p4 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
 p5 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = nh4_n_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "NH4",
+  labs(y = "NH4 (ug/l)",
        x = "Sample Date") +
-  theme_minimal() +
+  theme_classic() +
+  geom_vline(xintercept = as.Date("1989-09-10"),
+             linetype = "dotdash") +
   theme(legend.position = "none")
 ```
 
-```{r}
+```{r, fig.width=8, fig.height=12}
 #| warning: false
 plots <- (p1 / p2 / p3 / p4 / p5)
 plots + plot_annotation(

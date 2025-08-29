@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="data-importing-combining" class="level2">
 <h2 class="anchored" data-anchor-id="data-importing-combining">Data Importing &amp; Combining</h2>
-<p>Details on importing, combining, and cleaning data can be found in <code>R/dataimport_cleaning.R</code></p>
+<p>Details on importing, combining, and cleaning data can be found in <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read cleaned data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -128,7 +128,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>Two functions were created to 1. calculate the moving average of irregular observation windows (see <code>R/moving_avg_function.R</code>) and 2. apply the moving average function over a range of <code>streams_all</code> columns and create new rolling average columns for each stream measurement (see <code>R/zapply.R</code> for function creation and <code>R/dataimport_cleaning.R</code> for application use.</p>
+<p>Two functions were created to 1. calculate the moving average of irregular observation windows (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R"><code>R/moving_avg_function.R</code></a>) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R"><code>R/zapply.R</code></a> for function creation and <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a> for application use.</p>
+<p>The end product being <code>streams_long</code> a combined dataframe with all streams and their respective, moving average measurements.</p>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
@@ -142,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="paper_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="paper_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
