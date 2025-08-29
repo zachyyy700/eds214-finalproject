@@ -3,10 +3,10 @@
 source(here::here("R", "moving_avg_function.R"))
 source(here::here("R", "zapply.R"))
 # load the 4 raw csvs
-bq1_df <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv"))
-bq2_df <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv"))
-bq3_df <- read_csv(here::here("data", "QuebradaCuenca3-Bisley.csv"))
-prm_df <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
+bq1_df <- read_csv(here::here("data", "raw", "QuebradaCuenca1-Bisley.csv"))
+bq2_df <- read_csv(here::here("data", "raw", "QuebradaCuenca2-Bisley.csv"))
+bq3_df <- read_csv(here::here("data", "raw", "QuebradaCuenca3-Bisley.csv"))
+prm_df <- read_csv(here::here("data","raw", "RioMameyesPuenteRoto.csv"))
 
 # combine four dfs with bind_rows() + narrow down rows and cols
 streams_all <- bind_rows(bq1_df, bq2_df, bq3_df, prm_df) |> 
