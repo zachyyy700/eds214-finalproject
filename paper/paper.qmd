@@ -101,7 +101,7 @@ p4 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
 p5 <- ggplot(streams_long, aes(x = sample_date, color = sample_id)) +
   geom_line(aes(y = nh4_n_rolling)) +
   scale_color_brewer(palette = "Dark2") +
-  labs(y = "NH4 (ug/l)",
+  labs(y = expression(NH[4]~(ug~l^{-1})),
        x = "Sample Date") +
   theme_classic() +
   geom_vline(xintercept = as.Date("1989-09-10"),
