@@ -118,20 +118,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="data-importing-combining" class="level2">
 <h2 class="anchored" data-anchor-id="data-importing-combining">Data Importing &amp; Combining</h2>
-<p>Details on importing, combining, and cleaning data can be found in <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a></p>
-<section id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-renviron_init.r" class="level5">
-<h5 class="anchored" data-anchor-id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-renviron_init.r"><strong>Install necessary packages to replicate this Quarto doc by seeing <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/environ_init.R"><code>R/environ_init.R</code></a></strong></h5>
+<p>Details on importing, combining, and cleaning data can be found in <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/1_data_import_cleaning.R"><code>1_dataimport_cleaning.R</code></a></p>
+<section id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-0_environ_init.r" class="level5">
+<h5 class="anchored" data-anchor-id="install-necessary-packages-to-replicate-this-quarto-doc-by-seeing-0_environ_init.r"><strong>Install necessary packages to replicate this Quarto doc by seeing <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/0_environ_init.R"><code>0_environ_init.R</code></a></strong></h5>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read cleaned data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>streams_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/streams_clean.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>streams_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs/streams_clean.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R"><code>R/moving_avg_function.R</code></a>) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R"><code>R/zapply.R</code></a> for function creation and <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a> for application use.</p>
+<p>Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R"><code>R/moving_avg_function.R</code></a>) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R"><code>R/zapply.R</code></a> for function creation and <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>1_data_import_cleaning.R</code></a> for application use.</p>
 <p>The end product being <code>streams_long</code>, a combined dataframe with all streams and their respective moving average measurements.</p>
 </section>
 <section id="results" class="level1">
