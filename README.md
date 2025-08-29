@@ -10,7 +10,7 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 
 -   [R](https://github.com/zachyyy700/eds214-finalproject/tree/main/R): Main analysis & supporting code. Contains R scripts used for importing/cleaning data and functions.
 -   [data](https://github.com/zachyyy700/eds214-finalproject/tree/main/data): Data used in this project. Retrieved from the [Environmental Data Initiative.](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064)
--   [docs](https://github.com/zachyyy700/eds214-finalproject/tree/main/docs): Holds important files for Github Page.
+-   [docs](https://github.com/zachyyy700/eds214-finalproject/tree/main/docs): Holds important files for Github Page and pictures used.
 -   [paper](https://github.com/zachyyy700/eds214-finalproject/tree/main/paper): Final Quarto document including code to reproduce figures.
 -   [scratch](https://github.com/zachyyy700/eds214-finalproject/tree/main/scratch): Initial R scripts, used as spaghetti code.
 
