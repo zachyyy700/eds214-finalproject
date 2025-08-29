@@ -7,7 +7,7 @@ format:
 
 # Background
 
-This paper serves as documentation for the final project of *EDS 214: Analytical Workflows and Scientific Reproducibility*. The goal is to create a reproducible, analytical workflow and remake Figure 3 of Schaefer et al. (2000). Figure 3 displays five stream nutrients over time from 1988-1994, showing the long-term effects of Hurricane Hugo (1989) on Puerto Rican streams. In the methods section, it was also mentioned that a 9-week moving average was used when creating each time-series.
+This paper serves as documentation for the final project of *EDS 214: Analytical Workflows and Scientific Reproducibility*. The goal is to create a reproducible, analytical workflow and remake Figure 3 of Schaefer et al. (2000). Figure 3 displays five stream nutrients over time from 1988-1994, showing the long-term effects of Hurricane Hugo (1989) on Puerto Rican streams. In the methods section of Schaefer et al. (2000), it was also mentioned that a 9-week moving average was used when creating each time-series.
 
 > Schaefer, Douglas. A., McDowell, W. H., Scatena, F. N., & Asbury, C. E. (2000). Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. Journal of Tropical Ecology, 16(2), 189–207. <https://doi.org/10.1017/s0266467400001358>
 
@@ -40,9 +40,9 @@ streams_long <- read_csv(here::here("data/streams_clean.csv"))
 
 # Methods
 
-Two functions were created to 1. calculate the moving average of irregular observation windows (see [`R/moving_avg_function.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R)) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see [`R/zapply.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R) for function creation and [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R) for application use.
+Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see [`R/moving_avg_function.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R)) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see [`R/zapply.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R) for function creation and [`R/dataimport_cleaning.R`](https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R) for application use.
 
-The end product being `streams_long` a combined dataframe with all streams and their respective, moving average measurements.
+The end product being `streams_long`, a combined dataframe with all streams and their respective moving average measurements.
 
 # Results
 

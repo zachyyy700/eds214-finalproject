@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>This paper serves as documentation for the final project of <em>EDS 214: Analytical Workflows and Scientific Reproducibility</em>. The goal is to create a reproducible, analytical workflow and remake Figure 3 of Schaefer et al.&nbsp;(2000). Figure 3 displays five stream nutrients over time from 1988-1994, showing the long-term effects of Hurricane Hugo (1989) on Puerto Rican streams. In the methods section, it was also mentioned that a 9-week moving average was used when creating each time-series.</p>
+<p>This paper serves as documentation for the final project of <em>EDS 214: Analytical Workflows and Scientific Reproducibility</em>. The goal is to create a reproducible, analytical workflow and remake Figure 3 of Schaefer et al.&nbsp;(2000). Figure 3 displays five stream nutrients over time from 1988-1994, showing the long-term effects of Hurricane Hugo (1989) on Puerto Rican streams. In the methods section of Schaefer et al.&nbsp;(2000), it was also mentioned that a 9-week moving average was used when creating each time-series.</p>
 <blockquote class="blockquote">
 <p>Schaefer, Douglas. A., McDowell, W. H., Scatena, F. N., &amp; Asbury, C. E. (2000). Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. Journal of Tropical Ecology, 16(2), 189–207. <a href="https://doi.org/10.1017/s0266467400001358" class="uri">https://doi.org/10.1017/s0266467400001358</a></p>
 </blockquote>
@@ -131,8 +131,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>Two functions were created to 1. calculate the moving average of irregular observation windows (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R"><code>R/moving_avg_function.R</code></a>) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R"><code>R/zapply.R</code></a> for function creation and <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a> for application use.</p>
-<p>The end product being <code>streams_long</code> a combined dataframe with all streams and their respective, moving average measurements.</p>
+<p>Two functions were created to 1. calculate the 9-week moving average of irregular observation windows (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/moving_avg_function.R"><code>R/moving_avg_function.R</code></a>) and 2. apply the moving average function over a range of columns and create new rolling average columns for each stream measurement (see <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/zapply.R"><code>R/zapply.R</code></a> for function creation and <a href="https://github.com/zachyyy700/eds214-finalproject/blob/main/R/dataimport_cleaning.R"><code>R/dataimport_cleaning.R</code></a> for application use.</p>
+<p>The end product being <code>streams_long</code>, a combined dataframe with all streams and their respective moving average measurements.</p>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
