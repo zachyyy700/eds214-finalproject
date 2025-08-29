@@ -14,6 +14,10 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 -   [paper](https://github.com/zachyyy700/eds214-finalproject/tree/main/paper): Quarto document including code to reproduce figures.
 -   [scratch](https://github.com/zachyyy700/eds214-finalproject/tree/main/scratch): Initial R scripts, used as spaghetti.
 
+## Project Flowchart:
+
+![](https://zachyyy700.github.io/eds214-finalproject/docs/EDS214flowchart.png)
+
 ### Figure 3 (Left) & Recreated Final Product (right)
 
 <p float="left">
