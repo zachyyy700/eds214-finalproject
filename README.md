@@ -16,7 +16,7 @@ This repository serves as our final project in EDS-214. We are tasked with recre
 
 ## Project Flowchart:
 
-![](https://zachyyy700.github.io/eds214-finalproject/docs/EDS214flowchart.png)
+![](/docs/EDS214flowchart.png)
 
 ### Figure 3 (Left) & Recreated Final Product (right)
 
